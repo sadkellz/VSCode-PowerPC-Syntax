@@ -41,6 +41,14 @@
 		"variables": {
 			"patterns": [
 				{
+					"match": "\\.set\\s+(\\w+)\\s*,\\s*\\d+",
+					"captures": {
+						"1": {
+							"name": "variable.language.registers.ppc.assembly"
+						}
+					}
+				},
+				{
 					"match": "(?i)(?x)(\\s*)%?\\b(?:r(?:[0-9]|(?:[1-3][0-9]))d?|e?vr?(?:[0-9]|(?:[1-3][0-9]))d?|fr(?:[0-9]|(?:[1-3][0-9]))d?|vs(?:[0-9]|(?:[1-6][0-9]))d?)\\b",
 					"name": "variable.language.registers.ppc.assembly"
 				},
@@ -125,6 +133,10 @@
 				},
 				{
 					"include": "source.c++"
+				},
+				{
+					"match": "(?<=\\b(bdnz|bdnz\\+|bdnz-|bdz|bdz\\+|bdz-|bge|bge\\+|bge-|bnl|bnl\\+|bnl-|bgel|bgel\\+|bgel-|bnll|bnll\\+|bnll-|ble|ble\\+|ble-|bng|bng\\+|bng-|blel|blel\\+|blel-|bngl|bngl\\+|bngl-|bne|bne\\+|bne-|bnel|bnel\\+|bnel-|bns|bns\\+|bns-|bnu|bnu\\+|bnu-|bnsl|bnsl\\+|bnsl-|bnul|bnul\\+|bnul-|blt|blt\\+|blt-|bgt|bgt\\+|bgt-|beq|beq\\+|beq-)\\s)[A-Za-z_][A-Za-z0-9_]*",
+					"name": "meta.label.assembly"
 				}
 			]
 		},
@@ -197,7 +209,7 @@
 			{
 				"match": "^(\\s|\\t)*[_a-zA-Z0-9][a-zA-Z0-9-_.]*(?=:)",
 				"name": "storage.modifier.ppc.assembly"
-			},
+			},				
 			{
 				"match": "(?<=[<]).+(?=[+>])",
 				"name": "entity.name.function.ppc.assembly"
@@ -220,7 +232,12 @@
 					}
 				},
 				"name": "string.quoted.double.include.ppc.assembly"
+			},
+			{
+				"match": ".*\\b(backup|restore)\\b.*",
+				"name": "keyword.custom.backup_restore"
 			}
+			
 		]
 	}
 },
